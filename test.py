@@ -45,7 +45,7 @@ def main():
 
   while True:
     action = [2.0, 0.0]
-    obs,r,done,info = env.step(action)
+    obs, r, done, info = env.step(action)
 
     if done:
       obs = env.reset()
