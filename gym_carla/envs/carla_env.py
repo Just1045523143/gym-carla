@@ -520,15 +520,15 @@ class CarlaEnv(gym.Env):
         else:
             wayptimg = birdeye[:, :, 0] < 0  # Equal to a zero matrix
         wayptimg = np.expand_dims(wayptimg, axis=2)
-        wayptimg = np.fliplr(np.rot90(wayptimg, 3))
+        wayptimg = np.fliplr(np.rot90(wayptimg, 2))
 
         # Get the final lidar image
         lidar = np.concatenate((lidar, wayptimg), axis=2)
         lidar = np.flip(lidar, axis=1)
-        lidar = np.rot90(lidar, 1)
+        lidar = np.rot90(lidar, 2)
         lidar = lidar * 255
 
-        # Display lidar image
+        ## Display lidar image
         lidar_surface = rgb_to_display_surface(lidar, self.display_size)
         self.display.blit(lidar_surface, (self.display_size, 0))
 
@@ -563,8 +563,8 @@ class CarlaEnv(gym.Env):
                 x, y, yaw, l, w = get_info(actor)
                 x_local, y_local, yaw_local = get_local_pose((x, y, yaw), (ego_x, ego_y, ego_yaw))
                 if actor.id != self.ego.id:
-                    if abs(
-                            y_local) < self.obs_range / 2 + 1 and x_local < self.obs_range - self.d_behind + 1 and x_local > -self.d_behind - 1:
+                    if abs(y_local) < self.obs_range / 2 + 1 \
+                            and self.obs_range - self.d_behind + 1 > x_local > -self.d_behind - 1:
                         x_pixel, y_pixel, yaw_pixel, l_pixel, w_pixel = get_pixel_info(
                             local_info=(x_local, y_local, yaw_local, l, w),
                             d_behind=self.d_behind, obs_range=self.obs_range, image_size=self.pixor_size)
