@@ -507,8 +507,8 @@ class CarlaEnv(gym.Env):
         point_cloud = np.array(point_cloud)
         # Separate the 3D space to bins for point cloud, x and y is set according to self.lidar_bin,
         # and z is set to be two bins.
-        y_bins = np.arange(-(self.obs_range - self.d_behind), self.d_behind + self.lidar_bin, self.lidar_bin)
-        x_bins = np.arange(-self.obs_range / 2, self.obs_range / 2 + self.lidar_bin, self.lidar_bin)
+        x_bins = np.arange(-(self.obs_range - self.d_behind), self.d_behind + self.lidar_bin, self.lidar_bin)
+        y_bins = np.arange(-self.obs_range / 2, self.obs_range / 2 + 0.01, self.lidar_bin)
         z_bins = [-self.lidar_height - 1, -self.lidar_height + 0.25, 1]
         # Get lidar image according to the bins
         lidar, _ = np.histogramdd(point_cloud, bins=(x_bins, y_bins, z_bins))
