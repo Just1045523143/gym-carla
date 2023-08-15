@@ -29,7 +29,7 @@ def main():
     'max_time_episode': 1000,  # maximum timesteps per episode
     'max_waypt': 12,  # maximum number of waypoints
     'obs_range': 32,  # observation range (meter)
-    'lidar_bin': 0.125,  # bin size of lidar sensor (meter)
+    'lidar_bin': 0.125,  # bin size of lidar sensor (meter) 分辨率
     'd_behind': 12,  # distance behind the ego vehicle (meter)
     'out_lane_thres': 2.0,  # threshold for out of lane
     'desired_speed': 8,  # desired speed (m/s)

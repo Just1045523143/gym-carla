@@ -117,14 +117,14 @@ class CarlaEnv(gym.Env):
         # Lidar sensor
         self.lidar_data = None
         self.lidar_height = 2.1
-        self.lidar_trans = carla.Transform(carla.Location(x=0.0, z=self.lidar_height))
+        self.lidar_trans = carla.Transform(carla.Location(x=0.0, y=0.0, z=self.lidar_height))
         self.lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast')
         self.lidar_bp.set_attribute('channels', '32')
         self.lidar_bp.set_attribute('range', '5000')
 
         # Camera sensor
         self.camera_img = np.zeros((self.obs_size, self.obs_size, 3), dtype=np.uint8)
-        self.camera_trans = carla.Transform(carla.Location(x=0.8, z=1.7))
+        self.camera_trans = carla.Transform(carla.Location(x=0.8, y=0.0, z=1.7))
         self.camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')
         # Modify the attributes of the blueprint to set image resolution and field of view.
         self.camera_bp.set_attribute('image_size_x', str(self.obs_size))
@@ -503,7 +503,7 @@ class CarlaEnv(gym.Env):
         point_cloud = []
         # Get point cloud data
         for location in self.lidar_data:
-            point_cloud.append([location.point.x, location.point.y, -location.point.z])
+            point_cloud.append([location.point.x, location.point.y, location.point.z])
         point_cloud = np.array(point_cloud)
         # Separate the 3D space to bins for point cloud, x and y is set according to self.lidar_bin,
         # and z is set to be two bins.
@@ -523,9 +523,9 @@ class CarlaEnv(gym.Env):
         wayptimg = np.fliplr(np.rot90(wayptimg, 2))
 
         # Get the final lidar image
-        lidar = np.concatenate((lidar, wayptimg), axis=2)
-        lidar = np.flip(lidar, axis=1)
-        lidar = np.rot90(lidar, 2)
+        lidar = np.concatenate((lidar, wayptimg), axis=2)   # 矩阵拼接
+        lidar = np.flip(lidar, axis=1)  # 列翻转
+        lidar = np.rot90(lidar, 2)  # 旋转180度
         lidar = lidar * 255
 
         ## Display lidar image
