@@ -21,6 +21,7 @@ $ git clone https://github.com/cjy1992/gym-carla.git
 $ pip install -r requirements.txt
 $ pip install -e .
 ```
+second command line will install gym_carla but you can still edit gym_carla
 
 4. Download [CARLA_0.9.6](https://github.com/carla-simulator/carla/releases/tag/0.9.6), extract it to some folder, and add CARLA to ```PYTHONPATH``` environment variable:
 ```
