@@ -36,8 +36,9 @@ You can use ```Alt+F1``` to get back your mouse control.
 
 Or you can run in non-display mode by:
 ```
-$ DISPLAY= ./CarlaUE4.sh -opengl -carla-port=2000
+./CarlaUE4.sh -RenderOffScreen
 ```
+ref: https://carla.readthedocs.io/en/0.9.14/adv_rendering_options/#low-mode
 
 2. Run the test file:
 ```
