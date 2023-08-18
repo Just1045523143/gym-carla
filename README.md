@@ -28,6 +28,11 @@ second command line will install gym_carla but you can still edit gym_carla
 $ export PYTHONPATH=$PYTHONPATH:$YourFolder$/CARLA_0.9.6/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg
 ```
 
+5. install pygame==1.9.6
+```
+libjpeg-dev libportmidi-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libsdl1.2-dev libsmpeg-dev libx11-dev libavformat-dev libswscale-dev
+```
+
 ## Usage
 1. Enter the CARLA root folder and launch the CARLA server by:
 ```

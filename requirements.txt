@@ -1,4 +1,4 @@
 gym==0.23.0
-pygame>=1.9.6
+pygame==1.9.6
 scikit-image==0.16.2
-numpy==1.21.4
+numpy==1.21.1
